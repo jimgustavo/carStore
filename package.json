@@ -1,10 +1,10 @@
 {
-  "name": "learn-mern-stack-with-traversymedia",
+  "name": "carStore",
   "version": "1.0.0",
-  "description": "Shopping list build with the MERN stack follwing Traversy Media on Youtube",
+  "description": "Car store for online shopping ",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prexix client",
+    "client-install": "npm install --prefix client",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
