@@ -29,9 +29,12 @@
 }
 
 .ShoppingList {
-  background-color: black;
+  background-color: chartreuse;
   width: 100%;
   height: 800px;
+}
+.ShoppingColumns {
+  margin-right: 0.5rem;
 }
 
 .Cart {
