@@ -7,5 +7,5 @@ export default function SignIn(props) {
     <div className="SignIn">
       <h2> Sign In! </h2>
     </div>
-  );
-}
+        );
+  }
