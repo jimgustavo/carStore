@@ -1,4 +1,8 @@
-import { GET_STOCK, STOCK_LOADING } from "../actions/stockTypes";
+import {
+  GET_STOCK,
+  STOCK_LOADING,
+  GET_STOCK_BY_TAGS
+} from "../actions/stockTypes";
 const initialState = {
   stock: [{ _id: 1, productName: "item 1 reducer" }],
   //stock: null,
@@ -12,12 +16,17 @@ export default function(state = initialState, { type, payload }) {
         stock: [...payload, ...state.stock],
         loading: false
       };
-    case STOCK_LOADING: {
+    case STOCK_LOADING:
       return {
         ...state,
         loading: true
       };
-    }
+    /*    case GET_STOCK_BY_TAGS:
+      return {
+        ...state,
+        stock: [...payload, ...state.stock],
+        loading: false
+      }; */
     default:
       return state;
   }

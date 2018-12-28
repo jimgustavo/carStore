@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: dodgerblue;
 }
 
 .App-logo {
@@ -27,24 +28,27 @@
   width: 100%;
   height: 800px;
 }
-
 .ShoppingList {
-  background-color: chartreuse;
-  width: 100%;
-  height: 800px;
+}
+
+.TagsContainer {
+  font-style: italic;
+}
+
+.ListContainer {
+  padding: 5px;
+  margin-top: 5px;
 }
 .ShoppingColumns {
-  margin-right: 0.5rem;
+  padding: 5px;
 }
 
 .Cart {
-  background-color: skyblue;
   width: 100%;
   height: 800px;
 }
 
 .SignIn {
-  background-color: chartreuse;
   width: 100%;
   height: 800px;
 }
