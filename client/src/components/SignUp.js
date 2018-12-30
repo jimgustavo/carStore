@@ -9,13 +9,13 @@ export default function SignUp(props) {
       <form>
         <label>Name address</label>
         <br />
-        <input />
+        <input className="Input3" placeholder="Usuario" />
         <br />
         <br />
-        <input />
+        <input className="Input4" placeholder="Email" />
         <br />
         <br />
-        <input />
+        <input className="Input5" placeholder="Contraseña" />
         <br />
         <br />
         <button>Registrar</button>

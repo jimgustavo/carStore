@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
-import { Container } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Provider } from "react-redux";
@@ -28,5 +26,3 @@ class App extends Component {
 }
 
 export default App;
-
-//<Container> hey! </Container>

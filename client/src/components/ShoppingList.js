@@ -9,16 +9,13 @@ import {
   Button,
   Col,
   Container,
-  CardColumns,
-  Nav,
-  NavItem,
-  NavLink
+  CardColumns
 } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import "../App.css";
 
-import { getStock, getStockByTags } from "../actions/getStock";
+import { getStock } from "../actions/getStock";
 import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
@@ -27,23 +24,23 @@ export class ShoppingList extends Component {
   state = {
     value: 0
   };
-  /*
-  onTagClick = (TAG) => {
-    this.props.getStockByTags(TAG); // will go to actions
-  }
-  componentDidMount() {
-    this.props.getStockByTags(); // will go to actions
-  }
-*/
   componentDidMount() {
     this.props.getStock(); // will go to actions
   }
 
   render() {
-    console.log("ShoppingList: this.props.stockObj:", this.props.stockObj);
-    const { stock } = this.props.stockObj;
+    /*let filteredStock = stock.filter(() => {
+      return stock.keywords.indexOf(this.state.search) !== -1;
+    });*/
+    // console.log("ShoppingList: this.props.stockObj:", this.props.stockObj);
+    let { stock } = this.props.stockObj;
     return (
       <div className="ShoppingList">
+        <input
+          type="text"
+          value={this.state.stock}
+          //onChange={this.updateStock.bind(this)}
+        />
         <Container className="ListContainer">
           <CardColumns className="ShoppingColumns">
             <TransitionGroup>
@@ -83,10 +80,9 @@ export class ShoppingList extends Component {
 }
 
 ShoppingList.propTypes = {
-  //when a action is imported from redux it's add to your class as a prop
+  //when an action is imported from redux it's add to your class as a prop
   getStock: PropTypes.func.isRequired,
   stockObj: PropTypes.object.isRequired
-  //getStockByTags: PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
   stockObj: state.stockReducer
@@ -96,4 +92,3 @@ export default connect(
   mapStateToProps,
   { getStock }
 )(ShoppingList);
-// getStockByTags
