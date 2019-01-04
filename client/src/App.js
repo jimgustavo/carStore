@@ -1,32 +1,59 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import Axios from "axios";
 
-import { Container } from "reactstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+class App extends React.Component {
+  state = {
+    stock: [
+      { productName: "ipadPRO", keywords: "TABLET" },
+      { productName: "Iphone X", keywords: "CELLPHONE" },
+      { productName: "Samsung Galaxi Tab", keywords: "TABLET" },
+      { productName: "Samsung S9", keywords: "CELLPHONE" }
+    ]
+  };
 
-import { Provider } from 'react-redux';
-import store from './store/store';
+  componentDidMount() {
+    Axios.get("/api/stock")
+      .then(res => {
+        const stock = res.data;
+        this.setState({ stock });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 
-import NavBar from "./components/NavBar";
-
-
-//importing the router for the DOM
-import Router from "./Router";
-
-class App extends Component {
   render() {
     return (
-      //provider provide a way to share states between components
-      <Provider store={store}> 
-      <div className="App">
-        <NavBar />
-        <Router />
-        <Container> hey! </Container>
+      <div className="grid-container">
+        <input
+          type="text"
+          //  value={this.state.filteredStock}
+          //  onChange={this.filteredStock.bind(this)}
+        />
+        <div className="grid">
+          {this.state.stock.map(
+            ({ productName, description, keywords, image, price }) => (
+              <div className="card">
+                <h2>{productName}</h2>
+                <img
+                  src={image}
+                  title={productName}
+                  height={180}
+                  width={180}
+                  alt={"Sorry!, this toy has an error!"}
+                />
+                <div>{description}</div>
+                <div>{keywords}</div>
+                <div>{price}</div>
+                <button>Comprar</button>
+              </div>
+            )
+          )
+          //.filter(({ keywords }) => keywords !== "CELULARES")
+          }
+        </div>
       </div>
-      </Provider>
     );
   }
 }
-
 export default App;
