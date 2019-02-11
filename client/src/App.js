@@ -10,9 +10,38 @@ class App extends React.Component {
         { productName: "Iphone X", keywords: "CELLPHONE" },
         { productName: "Samsung Galaxi Tab", keywords: "TABLET" },
         { productName: "Samsung S9", keywords: "CELLPHONE" },
-        { productName: "ASUS", keywords: ["TABLET", "LAPTOP"] }
+        { productName: "ASUS", keywords: "LAPTOP" }
       ]
     };
+    setTimeout(() => {
+      this.setState(this.state.stock);
+    }, 7000);
+    console.log("constructor");
+    this.clickOnCellphones = this.clickOnCellphones.bind(this);
+    this.clickOnSoftware = this.clickOnSoftware.bind(this);
+  }
+
+  clickOnCellphones() {
+    Axios.get("/api/stock/cellphones")
+      .then(res => {
+        const stock = res.data;
+        this.setState({ stock });
+        console.log(stock);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+  clickOnSoftware() {
+    Axios.get("/api/stock/software")
+      .then(res => {
+        const stock = res.data;
+        this.setState({ stock });
+        console.log(stock);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   componentDidMount() {
@@ -20,7 +49,7 @@ class App extends React.Component {
       .then(res => {
         const stock = res.data;
         this.setState({ stock });
-        console.log({ stock });
+        console.log(stock);
       })
       .catch(function(error) {
         console.log(error);
@@ -28,40 +57,36 @@ class App extends React.Component {
   }
 
   render() {
-    var key = "SOFTWARE";
-    let tag = this.state.stock.filter(
-      ({ productName, description, keywords, image, price }) =>
-        keywords == `${key}`
-    );
-
-    console.log(tag);
-
+    console.log(this.state.stock);
     return (
       <div className="grid-container">
         <input
           type="text"
-          //  value={this.state.search}
-          //  onChange={this.updateSearch.bind(this)}
+          id="filter"
+          value={this.state.stock}
+          onChange={this.handleChange}
         />
-        <button onClick={null}>LAPTOPS</button>
-        <button onClick={null}>SOFTWARE</button>
+        <button onClick={this.clickOnCellphones}>CELLPHONES</button>
+        <button onClick={this.clickOnSoftware}>SOFTWARE</button>
         <div className="grid">
-          {tag.map(({ productName, description, keywords, image, price }) => (
-            <div className="card">
-              <h2>{productName}</h2>
-              <img
-                src={image}
-                title={productName}
-                height={180}
-                width={180}
-                alt={"Sorry!, this toy has an error!"}
-              />
-              <div>{description}</div>
-              <div>{keywords}</div>
-              <div>{price}</div>
-              <button>Comprar</button>
-            </div>
-          ))}
+          {this.state.stock.map(
+            ({ productName, description, keywords, image, price }) => (
+              <div className="card">
+                <h2>{productName}</h2>
+                <img
+                  src={image}
+                  title={productName}
+                  height={180}
+                  width={180}
+                  alt={"Sorry!, this toy has an error!"}
+                />
+                <div>{description}</div>
+                <div>{keywords}</div>
+                <div>{price}</div>
+                <button>Comprar</button>
+              </div>
+            )
+          )}
         </div>
       </div>
     );

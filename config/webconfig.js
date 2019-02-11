@@ -1,3 +1,6 @@
 module.exports = {
-  mongoURI: "mongodb://centavo:mamacita87@ds139534.mlab.com:39534/carstore"
+  //External
+  //mongoURI: "mongodb://jimgustavo:mamacita69@ds217125.mlab.com:17125/expressapi"
+  //localhost
+  mongoURI: "mongodb://localhost/mongodbapi"
 };

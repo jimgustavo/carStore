@@ -6,7 +6,6 @@ const path = require("path");
 const users = require("./routes/api/users");
 const stock = require("./routes/api/stock");
 const billing = require("./routes/api/billing");
-//const illing = require("./routes/api/illing");
 
 const app = express();
 
@@ -22,13 +21,12 @@ mongoose
   .then(() => console.log("MongoDB is already Connected brow!..."))
   .catch(err => console.log("Sorry brow! MongoDB has an Error!", err));
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 // Use Routes
 app.use("/api/users", users);
 app.use("/api/stock", stock);
 app.use("/api/billing", billing);
-//app.use("/api/illing", illing);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {

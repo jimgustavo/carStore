@@ -8,7 +8,7 @@ const Good = require("../../model/stock");
 // @desc   Get All Good
 // @access Public
 router.get("/", (req, res) => {
-  // if weren't using routers should be /api/products
+  // if weren't using routers should be /api/stock
   Good.find()
     .sort({ date: -1 }) //desc
     .then(goods => res.json(goods));
