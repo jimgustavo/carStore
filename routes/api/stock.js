@@ -14,6 +14,15 @@ router.get("/", (req, res) => {
     .then(goods => res.json(goods));
 });
 
+// get by query
+
+router.get("/:query", function(req, res) {
+  let query = req.params.query;
+  Good.find({ keywords: `${query}` })
+    .then(goods => res.json(goods))
+    .catch(er => res.json(er));
+});
+
 // @route  POST api/stock
 // @desc   Create a Good
 // @access Public
